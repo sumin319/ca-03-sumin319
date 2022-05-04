@@ -36,7 +36,14 @@ class Blob:
         '''This is the id or a count given to the blob considering that each blob is unique.'''
         self.id = 0
 
-
+    # add: 5/5
+    # set/get id: 10/10
+    # set/get color: 10/10
+    # get centriod: 2/5
+    # get size: 5/5
+    # set_bbox: 10/10
+    # get_bbox: 5/5
+    # Note: check for feedback commnets in corresponding functions for lost points
 
     '''Write a method that adds the pixel location given 
     as 'x_pos' and 'y_pos' to the linked list that maintains 
@@ -69,7 +76,7 @@ class Blob:
 
     '''Write a method to return the centroid of the blob (region).'''
     def get_centroid(self):
-        return [self.centroid_x, self.centroid_y]
+        return [self.centroid_x, self.centroid_y] #Feedback: calculations for centriod should be done in here instead of add function (-3)
 
     '''Write a method to return the size (area) of the blob (region).'''
     def get_size(self):
@@ -180,7 +187,7 @@ class RegionAnalysis:
     using the Queue data structure. This method will need to be modified to accept
     the return value from the modified floodfill method and to add generated blob (region)
     to the linked list that stores all blobs (self.regions).'''
-
+    #10/10
     def connected_components_queue(self):
         data = self.binary_image.get_image_data().copy()
         self.num_regions = 0
@@ -200,7 +207,8 @@ class RegionAnalysis:
     the Stack data structure.  You may need to modify this method to manage
     each identified blob (region) using the given Blob class and the 
     enhanced RegionAnalysis class. This private method should return a blob (region).'''
-
+   
+    #feedback: The blob should be created here (-5) -> 5/10
     def __floodfill_stack(self, temp, x, y, blob):
             ny = [-1, -1, -1, 0, 0, 1, 1, 1]
             nx = [-1, 0, 1, -1, 1, -1, 0, 1]
@@ -276,6 +284,8 @@ class RegionAnalysis:
     all the regions identified after connected component analysis and generates the
     blob image to include those blobs (region) along with a bounding box surrounding
     each of the blobs (regions).'''
+    
+    #feedback: both the blob and bounding box should be drawn on the image if the size meets the threshold (-5) -> 15/20
     def set_blob_image(self, size_threshold=0):
         current = self.regions.head
         while current != None:
@@ -293,10 +303,12 @@ class RegionAnalysis:
         current = current.get_next()
 
     '''Write the method that returns the blob image.'''
+    #5/5
     def get_blob_image(self):
         return self.blob_image
 
     '''Write the method that returns the total number of blobs (regions) 
     resulting from the selection/filtering operation specified to be performed.'''
+    #5/5                             
     def get_num_blobs(self):
         return self.num_blobs
